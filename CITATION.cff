@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use the Action Boundary Brief, please cite the repository and review the method limits."
+title: "Action Boundary Brief"
+type: software
+authors:
+  - name: "Virtualmase"
+repository-code: "https://github.com/virtualmase/action-boundary-brief"
+url: "https://virtualmase.github.io/action-boundary-brief/"
+license: "Apache-2.0"
