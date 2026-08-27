@@ -17,4 +17,8 @@ The showcase gives the reader a usable sequence—intended outcome, resource env
 
 ## Remaining release checks
 
-Publish the source to a dedicated public repository, enable GitHub Pages from its `main` branch, confirm the production project URL, test the production 404, and verify all external source links after the platform has built the release.
+The source was published to the dedicated public repository at commit `e9f6a33`. GitHub Pages is enabled from the repository’s `main` branch and the platform reports status `built` at `https://virtualmase.github.io/action-boundary-brief/`. The published page rendered its title, source-linked method, original relay visual, reusable-template link, fictional walkthrough, and clear non-authorization boundary.
+
+The GitHub integration token was unable to create the Pages site through the API, so the owner-authorized GitHub Pages setting was activated in the authenticated browser instead. This was a narrowly scoped publishing configuration: `main` plus repository root only, no custom domain, no DNS change, no analytics, and no changes to the root Virtualmase, AI Mastery, or ARM properties.
+
+The production missing-route response at `https://virtualmase.github.io/action-boundary-brief/route-not-present` rendered the custom **Route not found — Action Boundary Brief** page and exposed its return link to the project-site root. The public normal and error paths are now verified.
