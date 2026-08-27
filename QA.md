@@ -22,3 +22,9 @@ The source was published to the dedicated public repository at commit `e9f6a33`.
 The GitHub integration token was unable to create the Pages site through the API, so the owner-authorized GitHub Pages setting was activated in the authenticated browser instead. This was a narrowly scoped publishing configuration: `main` plus repository root only, no custom domain, no DNS change, no analytics, and no changes to the root Virtualmase, AI Mastery, or ARM properties.
 
 The production missing-route response at `https://virtualmase.github.io/action-boundary-brief/route-not-present` rendered the custom **Route not found — Action Boundary Brief** page and exposed its return link to the project-site root. The public normal and error paths are now verified.
+
+## Identity, footer, and static discovery follow-up — 2026-08-27
+
+The updated local preview rendered the new cobalt relay mark in the page header at a clearly readable scale while retaining the asymmetric editorial composition. The new 48×48 fallback icon was also checked independently and retained its distinct relay silhouette. Browser footer scrolling was not conclusive in this environment, so the updated footer’s grouped **Use**, **Inspect**, **Continue**, and **Correct** routes are checked by the static release validator as well as source inspection.
+
+The pending release adds SVG and PNG favicon fallbacks, touch and manifest icons, a 1200×630 PNG social preview, complete Twitter/X metadata, accurate `WebSite`/`WebPage`/`SoftwareSourceCode` JSON-LD, `llms.txt`, lean canonical sitemap structure, and the property-specific operating footer. These controls improve machine-readable discovery and sharing context; they do not guarantee crawling, indexing, ranking, or social-card behavior.

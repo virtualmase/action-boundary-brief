@@ -1,0 +1,15 @@
+# Action Boundary Brief
+
+> A model-neutral pre-action skill for documenting an AI-enabled action’s intended outcome, resource envelope, decision right, accountable person, interruption path, and minimum review record.
+
+## Primary routes
+
+- [Public walkthrough](https://virtualmase.github.io/action-boundary-brief/)
+- [Reusable skill instructions](https://github.com/virtualmase/action-boundary-brief/blob/main/SKILL.md)
+- [Markdown brief template](https://github.com/virtualmase/action-boundary-brief/blob/main/templates/action-boundary-brief.md)
+- [Source notes and method limits](https://github.com/virtualmase/action-boundary-brief/blob/main/references/source-notes.md)
+- [Selection research](https://github.com/virtualmase/action-boundary-brief/blob/main/research/discovery.md)
+
+## Critical boundaries
+
+The brief does not approve, authorize, certify, score, or determine compliance for an action. It does not replace legal, security, safety, privacy, incident-response, or organization-specific review. A named accountable person decides whether a proposed action may proceed.

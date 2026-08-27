@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Action Boundary Brief relay mark"><rect width="64" height="64" fill="#f4f2e9"/><path d="M6 32h52" fill="none" stroke="#1746c8" stroke-width="4"/><rect x="11" y="21" width="15" height="22" fill="#f4f2e9" stroke="#17202a" stroke-width="3"/><rect x="38" y="21" width="15" height="22" fill="#f4f2e9" stroke="#17202a" stroke-width="3"/><circle cx="32" cy="32" r="7" fill="#1746c8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Action Boundary Brief relay symbol">
+  <rect width="64" height="64" rx="12" fill="#1746c8"/>
+  <path d="M14 32h15m6 0h15" fill="none" stroke="#f4f2e9" stroke-width="5" stroke-linecap="square"/>
+  <rect x="9" y="24" width="10" height="16" fill="#f4f2e9"/>
+  <circle cx="32" cy="32" r="8" fill="#f4f2e9"/>
+  <rect x="45" y="24" width="10" height="16" fill="#ce6545"/>
+</svg>

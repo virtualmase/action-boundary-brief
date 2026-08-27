@@ -2,26 +2,13 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve(new URL('..', import.meta.url).pathname);
-const files = ['index.html', 'styles.css', 'script.js', '404.html', 'favicon.svg', 'og-image.svg', 'robots.txt', 'sitemap.xml', '.nojekyll', 'SKILL.md', 'README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'CITATION.cff', 'LICENSE', 'QA.md', 'templates/action-boundary-brief.md', 'references/source-notes.md', 'research/discovery.md', 'scripts/validate_boundary_brief.py'];
-const required = [
-  ['index.html', '<link rel="canonical" href="https://virtualmase.github.io/action-boundary-brief/">'],
-  ['index.html', 'Action Boundary Brief'],
-  ['index.html', 'SKILL.md'],
-  ['index.html', 'https://www.nist.gov/itl/ai-risk-management-framework'],
-  ['index.html', 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-14'],
-  ['index.html', 'https://owasp.org/www-project-top-10-for-large-language-model-applications/'],
-  ['SKILL.md', 'Do not use it as a substitute'],
-  ['README.md', '[Apache License 2.0](LICENSE)'],
-  ['QA.md', 'Release QA — Action Boundary Brief'],
-  ['templates/action-boundary-brief.md', '**Prohibited action:**'],
-  ['references/source-notes.md', 'does not claim'],
-  ['robots.txt', 'Sitemap: https://virtualmase.github.io/action-boundary-brief/sitemap.xml'],
-  ['sitemap.xml', 'https://virtualmase.github.io/action-boundary-brief/']
-];
+const files = ['index.html', 'styles.css', 'identity-seo.css', 'script.js', '404.html', 'favicon.svg', 'favicon-48.png', 'favicon-180.png', 'favicon-192.png', 'favicon-512.png', 'og-image.svg', 'og-image.png', 'manifest.webmanifest', 'robots.txt', 'sitemap.xml', '.nojekyll', 'llms.txt', 'SKILL.md', 'README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'CITATION.cff', 'LICENSE', 'QA.md', 'docs/identity-seo-audit.md', 'templates/action-boundary-brief.md', 'references/source-notes.md', 'research/discovery.md', 'scripts/validate_boundary_brief.py', 'scripts/render_brand_assets.py'];
+const required = [['index.html', '<link rel="canonical" href="https://virtualmase.github.io/action-boundary-brief/">'], ['index.html', '<meta name="twitter:card" content="summary_large_image">'], ['index.html', 'og-image.png'], ['index.html', 'manifest.webmanifest'], ['index.html', 'site-footer--operating'], ['index.html', 'Use the work'], ['index.html', 'Inspect the basis'], ['index.html', 'Correct or improve'], ['index.html', 'https://www.nist.gov/itl/ai-risk-management-framework'], ['index.html', 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-14'], ['SKILL.md', 'Do not use it as a substitute'], ['README.md', '[Apache License 2.0](LICENSE)'], ['QA.md', 'Release QA — Action Boundary Brief'], ['templates/action-boundary-brief.md', '**Prohibited action:**'], ['references/source-notes.md', 'does not claim'], ['robots.txt', 'Sitemap: https://virtualmase.github.io/action-boundary-brief/sitemap.xml'], ['sitemap.xml', 'https://virtualmase.github.io/action-boundary-brief/']];
 const prohibited = [/\bfetch\s*\(/i, /XMLHttpRequest/i, /sendBeacon/i, /localStorage/i, /sessionStorage/i, /vite/i, /react/i, /tailwind/i, /certified/i, /compliant/i, /score your/i];
-let failed = false;
-for (const file of files) if (!existsSync(resolve(root, file))) { console.error(`FAIL: missing ${file}`); failed = true; }
-for (const [file, fragment] of required) { const text = readFileSync(resolve(root, file), 'utf8'); if (!text.includes(fragment)) { console.error(`FAIL: ${file} missing ${fragment}`); failed = true; } }
-for (const file of ['index.html', 'styles.css', 'script.js', '404.html']) { const text = readFileSync(resolve(root, file), 'utf8'); for (const pattern of prohibited) if (pattern.test(text)) { console.error(`FAIL: ${file} contains prohibited ${pattern}`); failed = true; } }
-if (failed) process.exit(1);
-console.log(`PASS: ${files.length} release files, source links, self-canonical metadata, boundary language, and no-network/no-storage rules verified.`);
+let failed = false; const fail = (message) => { console.error(`FAIL: ${message}`); failed = true; };
+for (const file of files) if (!existsSync(resolve(root, file))) fail(`missing ${file}`);
+for (const [file, fragment] of required) { const text = readFileSync(resolve(root, file), 'utf8'); if (!text.includes(fragment)) fail(`${file} missing ${fragment}`); }
+for (const file of ['index.html', 'styles.css', 'identity-seo.css', 'script.js', '404.html']) { const text = readFileSync(resolve(root, file), 'utf8'); for (const pattern of prohibited) if (pattern.test(text)) fail(`${file} contains prohibited ${pattern}`); }
+const index = readFileSync(resolve(root, 'index.html'), 'utf8'); const jsonLd = index.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/);
+if (!jsonLd) fail('index.html has no JSON-LD graph'); else { try { const graph = JSON.parse(jsonLd[1])['@graph']; for (const type of ['WebSite', 'WebPage', 'SoftwareSourceCode']) if (!graph?.some((item) => item['@type'] === type)) fail(`JSON-LD missing ${type}`); } catch { fail('index.html JSON-LD is not valid JSON'); } }
+if (failed) process.exit(1); console.log(`PASS: ${files.length} release files, identity assets, social metadata, structured data, footer routes, source links, and no-network/no-storage rules verified.`);
